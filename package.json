@@ -20,5 +20,9 @@
   "homepage": "https://github.com/KHollobaugh/Sprint-Challenge-Node-Express#readme",
   "devDependencies": {
     "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "knex": "^0.15.2",
+    "sqlite3": "^4.0.3"
   }
 }
