@@ -66,4 +66,51 @@ server.delete('/projects/:id', (req, res) => {
 })
 
 //Actions Endpoints
+
+//GET
+server.get('/actions', (req, res) => {
+    actionsDb.get()
+    .then(actions => res.status(200).json(actions))
+    .catch(err => {
+        res.status(500).json({ message: "Couldn't retrieve actions" })
+    })
+})
+
+//GET by ID
+server.get('/actions/:id', (req, res) => {
+    actionsDb.get(req.params.id)
+    .then(action => res.status(200).json(action))
+    .catch(err => {
+        res.status(404).json({ message: "there is no action by this ID" })
+    })
+})
+
+//CREATE
+server.post('/actions', (req, res) => {
+    actionsDb.insert(req.body)
+    .then(done => res.status(201).json(done))
+    .catch(err => {
+        res.status(400).json({ message: "Wasn't able to add new action" })
+    })
+})
+
+//UPDATE
+server.put('/actions/:id', (req, res) => {
+    actionsDb.update(req.params.id, req.body)
+    .then(action => res.status(201).json(action))
+    .catch(err => {
+        res.status(400).json({ message: "failed to update action"})
+    })
+})
+
+//DELETE
+server.delete('/actions/:id', (req, res) => {
+    actionsDb.remove(req.params.id)
+    .then(count => res.status(200).json(count))
+    .catch(err => {
+        res.status(400).json({ message: "could not delete action"})
+    })
+})
+
+
 module.exports = server;
